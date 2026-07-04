@@ -1,0 +1,14 @@
+[Unit]
+Description=Legal Landing Django Application
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/websiteportfolio
+Environment="PATH=/var/www/websiteportfolio/venv/bin"
+ExecStart=/var/www/websiteportfolio/venv/bin/gunicorn --workers 3 --bind unix:/var/www/websiteportfolio/legal_landing.sock legal_landing.wsgi:application
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

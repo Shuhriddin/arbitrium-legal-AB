@@ -1,0 +1,16 @@
+[Unit]
+Description=Telegram Bot Polling Service
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/websiteportfolio/bot
+Environment="PATH=/var/www/websiteportfolio/venv/bin"
+ExecStart=/var/www/websiteportfolio/venv/bin/python /var/www/websiteportfolio/bot/app.py
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

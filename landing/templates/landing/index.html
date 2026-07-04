@@ -1,0 +1,891 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ current_lang }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Optimization Keywords Weaved Organically -->
+    <title data-i18n="meta_title">{{ lang.meta_title }}</title>
+    <meta name="description" content="{{ lang.meta_desc }}" id="meta-desc">
+    <meta name="keywords"
+        content="Toshkent advokati, Jinoyat ishlari bo'yicha advokat, Advokat Toshkent, Ma'muriy ishlar advokati, Fuqarolik ishlar advokati, Yuridik konsultatsiya, Advokat yollash, Himoyachi advokat">
+
+    <!-- Elegant Typography: Playfair Display & Inter (Local) -->
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+
+    <!-- FontAwesome for Premium Icons (Local) -->
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=1.5">
+</head>
+
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#hero" class="logo">
+                <img src="{% static 'images/logo.svg' %}" alt="Logo" class="logo-img"
+                    style="width: 48px; height: 48px; object-fit: contain; display: block; transition: all 0.35s ease;">
+            </a>
+
+            <nav class="nav-menu" id="nav-menu">
+                <a href="#services" class="nav-link" data-i18n="nav_services">{{ lang.nav_services }}</a>
+                <a href="#cases" class="nav-link" data-i18n="nav_cases">{{ lang.nav_cases }}</a>
+                <a href="#blog" class="nav-link" data-i18n="nav_blog">{{ lang.nav_blog }}</a>
+                <a href="#about" class="nav-link" data-i18n="nav_about">{{ lang.nav_about }}</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="#contacts" class="nav-link" data-i18n="nav_contacts">{{ lang.nav_contacts }}</a>
+            </nav>
+
+            <div class="nav-actions">
+                <!-- Language Switcher Dropdown -->
+                <div class="lang-switcher" id="lang-switcher">
+                    <button class="lang-toggle-btn" id="lang-toggle-btn" aria-label="Tilni tanlash">
+                        <i class="fa-solid fa-globe"></i>
+                        <span id="lang-current-label">{{ current_lang|upper }}</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="lang-dropdown" id="lang-dropdown">
+                        <button class="lang-option {% if current_lang == 'uz' %}active{% endif %}" data-lang="uz">
+                            <span class="lang-flag">🇺🇿</span> O'zbekcha
+                        </button>
+                        <button class="lang-option {% if current_lang == 'ru' %}active{% endif %}" data-lang="ru">
+                            <span class="lang-flag">🇷🇺</span> Русский
+                        </button>
+                    </div>
+                </div>
+
+                <button class="btn btn-outline nav-cta-btn open-modal-btn" data-category="" data-i18n="nav_btn">
+                    {{ lang.nav_btn }}
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-accent"></div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fa-solid fa-scale-balanced"></i> Pro Justitia
+                </div>
+                <h1 class="hero-title" data-i18n="hero_title">{{ lang.hero_title|safe }}</h1>
+                <p class="hero-subtitle" data-i18n="hero_subtitle">{{ lang.hero_subtitle|safe }}</p>
+
+                <div class="hero-actions">
+                    <button class="btn btn-primary open-modal-btn" data-category="">
+                        <span data-i18n="hero_btn">{{ lang.hero_btn }}</span> <i
+                            class="fa-solid fa-arrow-right-long icon-right"></i>
+                    </button>
+                    <a href="#services" class="btn btn-secondary" data-i18n="nav_services">
+                        {{ lang.nav_services }}
+                    </a>
+                </div>
+
+                <!-- Key Stats -->
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">12+</span>
+                        <span class="stat-label" data-i18n="hero_stat_exp">{{ lang.hero_stat_exp }}</span>
+                    </div>
+                    <div class="stat-border"></div>
+                    <div class="stat-item">
+                        <span class="stat-number">850+</span>
+                        <span class="stat-label" data-i18n="hero_stat_cases">{{ lang.hero_stat_cases }}</span>
+                    </div>
+                    <div class="stat-border"></div>
+                    <div class="stat-item">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label" data-i18n="hero_stat_clients">{{ lang.hero_stat_clients }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Graphic Element / Emblem -->
+            <div class="hero-visual">
+                <div class="hero-image-frame">
+                    <div class="orbit-ring orbit-ring-1"></div>
+                    <div class="orbit-ring orbit-ring-2"></div>
+                    <div class="orbit-ring orbit-ring-3"></div>
+                    <div class="hero-image-circle">
+                        <img src="{% static 'images/tarozi_transparent.png' %}" alt="Advokat Shuhriddin"
+                            class="hero-showcase-image">
+                    </div>
+                    <div class="emblem-glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services / Specialties Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="nav_services">{{ lang.nav_services }}</span>
+                <h2 class="section-title" data-i18n="services_title">{{ lang.services_title }}</h2>
+                <div class="section-line"></div>
+                <p class="section-subtitle" data-i18n="services_subtitle">{{ lang.services_subtitle }}</p>
+            </div>
+
+            <div class="services-grid services-expanded">
+                <!-- Criminal Cases Card -->
+                <div class="service-card">
+                    <div class="service-icon-wrapper">
+                        <i class="fa-solid fa-gavel service-icon"></i>
+                    </div>
+                    <h3 class="service-title" data-i18n="service_criminal_title">{{ lang.service_criminal_title }}</h3>
+                    <p class="service-desc" data-i18n="service_criminal_desc">{{ lang.service_criminal_desc }}</p>
+
+                    <ul class="service-list">
+                        <li><i class="fa-solid fa-check list-check"></i> <span
+                                data-i18n="service_criminal_item1">{{ lang.service_criminal_item1 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span
+                                data-i18n="service_criminal_item2">{{ lang.service_criminal_item2 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span
+                                data-i18n="service_criminal_item3">{{ lang.service_criminal_item3 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span
+                                data-i18n="service_criminal_item4">{{ lang.service_criminal_item4 }}</span></li>
+                    </ul>
+
+                    <button class="btn btn-outline-dark card-btn open-modal-btn" data-category="criminal"
+                        data-i18n="service_btn">
+                        {{ lang.service_btn }}
+                    </button>
+                </div>
+
+                <!-- Administrative Cases Card -->
+                <div class="service-card">
+                    <div class="service-icon-wrapper">
+                        <i class="fa-solid fa-building-shield service-icon"></i>
+                    </div>
+                    <h3 class="service-title" data-i18n="service_administrative_title">
+                        {{ lang.service_administrative_title }}</h3>
+                    <p class="service-desc" data-i18n="service_administrative_desc">
+                        {{ lang.service_administrative_desc }}</p>
+
+                    <ul class="service-list">
+                        <li><i class="fa-solid fa-check list-check"></i> <span
+                                data-i18n="service_administrative_item1">{{ lang.service_administrative_item1 }}</span>
+                        </li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span
+                                data-i18n="service_administrative_item2">{{ lang.service_administrative_item2 }}</span>
+                        </li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span
+                                data-i18n="service_administrative_item3">{{ lang.service_administrative_item3 }}</span>
+                        </li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span
+                                data-i18n="service_administrative_item4">{{ lang.service_administrative_item4 }}</span>
+                        </li>
+                    </ul>
+
+                    <button class="btn btn-outline-dark card-btn open-modal-btn" data-category="administrative"
+                        data-i18n="service_btn">
+                        {{ lang.service_btn }}
+                    </button>
+                </div>
+
+                <!-- Civil Cases Card -->
+                <div class="service-card">
+                    <div class="service-icon-wrapper">
+                        <i class="fa-solid fa-users service-icon"></i>
+                    </div>
+                    <h3 class="service-title" data-i18n="service_civil_title">{{ lang.service_civil_title }}</h3>
+                    <p class="service-desc" data-i18n="service_civil_desc">{{ lang.service_civil_desc }}</p>
+
+                    <ul class="service-list">
+                        <li><i class="fa-solid fa-check list-check"></i> <span
+                                data-i18n="service_civil_item1">{{ lang.service_civil_item1 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span
+                                data-i18n="service_civil_item2">{{ lang.service_civil_item2 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span
+                                data-i18n="service_civil_item3">{{ lang.service_civil_item3 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span
+                                data-i18n="service_civil_item4">{{ lang.service_civil_item4 }}</span></li>
+                    </ul>
+
+                    <button class="btn btn-outline-dark card-btn open-modal-btn" data-category="civil"
+                        data-i18n="service_btn">
+                        {{ lang.service_btn }}
+                    </button>
+                </div>
+
+                <!-- Business & LLC Card -->
+                <div class="service-card">
+                    <div class="service-icon-wrapper">
+                        <i class="fa-solid fa-briefcase service-icon"></i>
+                    </div>
+                    <h3 class="service-title" data-i18n="service_business_title">{{ lang.service_business_title }}</h3>
+                    <p class="service-desc" data-i18n="service_business_desc">{{ lang.service_business_desc }}</p>
+
+                    <ul class="service-list">
+                        <li><i class="fa-solid fa-check list-check"></i> <span
+                                data-i18n="service_business_item1">{{ lang.service_business_item1 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span
+                                data-i18n="service_business_item2">{{ lang.service_business_item2 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span
+                                data-i18n="service_business_item3">{{ lang.service_business_item3 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span
+                                data-i18n="service_business_item4">{{ lang.service_business_item4 }}</span></li>
+                    </ul>
+
+                    <button class="btn btn-outline-dark card-btn open-modal-btn" data-category="business"
+                        data-i18n="service_btn">
+                        {{ lang.service_btn }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sud amaliyoti (Court Cases) Section -->
+    <section class="cases" id="cases">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="cases_title">{{ lang.cases_title }}</span>
+                <h2 class="section-title" data-i18n="cases_title">{{ lang.cases_title }}</h2>
+                <div class="section-line"></div>
+                <p class="section-subtitle" data-i18n="cases_subtitle">{{ lang.cases_subtitle }}</p>
+            </div>
+
+            <div class="cases-grid">
+                {% if cases %}
+                {% for case in cases %}
+                <div class="case-card">
+                    <span class="case-badge {{ case.result }}">
+                        {{ case.get_result_display }}
+                    </span>
+                    <h3 class="case-title lang-text" data-text-uz="{{ case.title }}"
+                        data-text-ru="{{ case.title_ru|default:case.title }}">
+                        {% if current_lang == 'ru' and case.title_ru %}
+                        {{ case.title_ru }}
+                        {% else %}
+                        {{ case.title }}
+                        {% endif %}
+                    </h3>
+                    <p class="case-desc lang-text" data-text-uz="{{ case.description }}"
+                        data-text-ru="{{ case.description_ru|default:case.description }}">
+                        {% if current_lang == 'ru' and case.description_ru %}
+                        {{ case.description_ru }}
+                        {% else %}
+                        {{ case.description }}
+                        {% endif %}
+                    </p>
+                    <div class="case-meta">
+                        <span><i class="fa-solid fa-folder"></i> {{ case.get_category_display }}</span>
+                        <span><i class="fa-solid fa-calendar"></i> {{ case.created_at|date:"d.m.Y" }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <!-- Premium SEO Fallback Static Content -->
+                <div class="case-card">
+                    <span class="case-badge acquitted" data-i18n="form_category_criminal">Jinoiy yo'nalish</span>
+                    <h3 class="case-title">Mijoz sud zalidan ozod etildi (Oqlov)</h3>
+                    <p class="case-desc">O'zbekiston Respublikasi JKning 167-moddasi (O'zlashtirish yoki rastrata
+                        qilish) bo'yicha ayblanayotgan shaxsning asossiz ayblovlari tergov va sud davomida rad etildi va
+                        u to'liq oqlandi.</p>
+                    <div class="case-meta">
+                        <span><i class="fa-solid fa-scale-balanced"></i> Pro Justitia</span>
+                    </div>
+                </div>
+                <div class="case-card">
+                    <span class="case-badge cancelled" data-i18n="form_category_administrative">Ma'muriy
+                        yo'nalish</span>
+                    <h3 class="case-title">Noqonuniy bayonnoma va jarima bekor qilindi</h3>
+                    <p class="case-desc">Davlat soliq xizmati organi tomonidan tadbirkorlik sub'ektiga nisbatan
+                        qo'llanilgan yirik miqdordagi ma'muriy jarima qarori sud tartibida noqonuniy deb topildi va
+                        butunlay bekor qilindi.</p>
+                    <div class="case-meta">
+                        <span><i class="fa-solid fa-scale-balanced"></i> Pro Justitia</span>
+                    </div>
+                </div>
+                <div class="case-card">
+                    <span class="case-badge satisfied" data-i18n="form_category_civil">Fuqarolik yo'nalishi</span>
+                    <h3 class="case-title">Mulk nizosi bo'yicha da'vo qanoatlantirildi</h3>
+                    <p class="case-desc">Meros taqsimoti bo'yicha yuzaga kelgan murakkab nizoda mijozning mulkka bo'lgan
+                        egalik huquqi qonuniy asoslantirilib, sud tomonidan meros ulushi to'liq undirib berildi.</p>
+                    <div class="case-meta">
+                        <span><i class="fa-solid fa-scale-balanced"></i> Pro Justitia</span>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog (Maqolalar) Section -->
+    <section class="blog" id="blog">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="blog_title">{{ lang.blog_title }}</span>
+                <h2 class="section-title" data-i18n="blog_title">{{ lang.blog_title }}</h2>
+                <div class="section-line"></div>
+                <p class="section-subtitle" data-i18n="blog_subtitle">{{ lang.blog_subtitle }}</p>
+            </div>
+
+            <div class="blog-grid">
+                {% if posts %}
+                {% for post in posts %}
+                <article class="blog-card">
+                    <div class="blog-category">{{ post.get_category_display }}</div>
+                    <h3 class="blog-card-title">{{ post.title }}</h3>
+                    <p class="blog-card-excerpt">{{ post.content|striptags|truncatewords:25 }}</p>
+                    <a href="#" class="blog-read-btn" data-title="{{ post.title|escape }}"
+                        data-content="{{ post.content|escape }}" data-law-code="{{ post.law_code|escape }}"
+                        data-law-article="{{ post.law_article|escape }}" data-i18n="blog_read_more">
+                        {{ lang.blog_read_more }} <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </article>
+                {% endfor %}
+                {% else %}
+                <!-- Premium SEO Articles Fallback (Boosts Google indexing) -->
+                <article class="blog-card">
+                    <div class="blog-category" data-i18n="form_category_criminal">Jinoiy Yo'nalish</div>
+                    <h3 class="blog-card-title">Sudlanganlik holati qachon va qanday tartibda tugaydi?</h3>
+                    <p class="blog-card-excerpt">Sudlanganlik holatining tugashi yoki olib tashlanishi qonunchilikda
+                        belgilangan muddatlar va shartlar asosida amalga oshiriladi. Batafsil yuridik tahlil...</p>
+                    <a href="#" class="blog-read-btn"
+                        data-title-uz="Sudlanganlik holati qachon va qanday tartibda tugaydi?"
+                        data-title-ru="Когда и в каком порядке прекращается состояние судимости?"
+                        data-content-uz="O'zbekiston Respublikasi Jinoyat kodeksi
+<span class='law-accent'>78-modda. Sudlanganlik holatining tugallanishi</span>
+Shaxsning sudlanganlik holati quyidagi paytlarda tugallanadi:
+<span class='law-accent'>a)</span> shartli hukm qilinganlarga nisbatan — sinov muddati tugagan kundan boshlab;
+<span class='law-accent'>b)</span> majburiy jamoat ishlari, xizmat boʻyicha cheklash yoki intizomiy qismga joʻnatish tarzidagi jazolarini oʻtab chiqqach;
+<span class='law-accent'>v)</span> jarima jazosi ijro etilgan kundan keyin, shuningdek muayyan huquqdan mahrum qilish yoki axloq tuzatish ishlari jazolari oʻtalganidan keyin bir yil oʻtgach;
+<span class='law-accent'>g)</span> ozodlikni cheklash jazosi oʻtalganidan keyin — ikki yil oʻtgach;
+<span class='law-accent'>d)</span> besh yildan koʻp boʻlmagan muddatga ozodlikdan mahrum qilish jazosi oʻtalganidan keyin — toʻrt yil oʻtgach;
+<span class='law-accent'>e)</span> besh yildan ortiq, lekin oʻn yildan koʻp boʻlmagan muddatga ozodlikdan mahrum qilish jazosi oʻtalganidan keyin — yetti yil oʻtgach;
+<span class='law-accent'>j)</span> oʻn yildan ortiq, lekin oʻn besh yildan koʻp boʻlmagan muddatga ozodlikdan mahrum qilish jazosi oʻtalganidan keyin — oʻn yil oʻtgach."
+                        data-content-ru="Уголовный кодекс Республики Узбекистан
+<span class='law-accent'>Статья 78. Погашение судимости</span>
+Состояние судимости прекращается:
+<span class='law-accent'>а)</span> в отношении условно осужденных — со дня истечения испытательного срока;
+<span class='law-accent'>б)</span> по отбытии наказания в виде обязательных общественных работ, ограничения по службе или направления в дисциплинарную часть;
+<span class='law-accent'>в)</span> по истечении одного года после исполнения наказания в виде штрафа, а также отбытия наказания в виде лишения определенного права или исправительных работ;
+<span class='law-accent'>г)</span> по истечении двух лет после отбытия наказания в виде ограничения свободы;
+<span class='law-accent'>д)</span> по истечении четырех лет после отбытия наказания в виде лишения свободы на срок не более пяти лет;
+<span class='law-accent'>е)</span> по истечении семи лет после отбытия наказания в виде лишения свободы на срок более пяти лет, но не более десяти лет;
+<span class='law-accent'>ж)</span> по истечении десяти лет после отбытия наказания в виде лишения свободы на срок более десяти лет, но не более пятнадцати лет."
+                        data-law-code-uz="Jinoyat kodeksi" data-law-code-ru="Уголовный кодекс"
+                        data-law-article-uz="78-modda" data-law-article-ru="Статья 78" data-i18n="blog_read_more">
+                        {{ lang.blog_read_more }} <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </article>
+                <article class="blog-card">
+                    <div class="blog-category" data-i18n="form_category_criminal">Jinoiy Yo'nalish</div>
+                    <h3 class="blog-card-title">Tergov jarayonida advokat chaqirish huquqining ahamiyati</h3>
+                    <p class="blog-card-excerpt">Har bir gumon qilinuvchi yoki ayblanuvchi tergov boshlangan ilk
+                        daqiqalardanoq himoyachi yollash va u kelgunga qadar ko'rsatma bermaslik huquqiga ega.</p>
+                    <a href="#" class="blog-read-btn"
+                        data-title-uz="Tergov jarayonida advokat chaqirish huquqining ahamiyati"
+                        data-title-ru="Значение права на вызов адвоката в ходе следственного процесса"
+                        data-content-uz="Har bir gumon qilinuvchi yoki ayblanuvchi tergov boshlangan ilk daqiqalardanoq himoyachi yollash va u kelgunga qadar ko'rsatma bermaslik huquqiga ega. Bu qonuniy huquq tergov jarayonida yuzaga kelishi mumkin bo'lgan turli bosimlar va asossiz ayblovlarning oldini olishda asosiy qalqon bo'lib xizmat qiladi. Huquqlaringiz poymol etilishiga yo'l qo'ymang."
+                        data-content-ru="Каждый подозреваемый или обвиняемый имеет право нанять защитника с первых минут начала следствия и не давать показаний до его прибытия. Это законное право служит основным щитом для предотвращения различных давлений и необоснованных обвинений в процессе расследования. Не допускайте ущемления ваших прав."
+                        data-law-code-uz="Jinoyat-protsessual kodeksi" data-law-code-ru="Уголовно-процессуальный кодекс"
+                        data-law-article-uz="49-modda" data-law-article-ru="Статья 49" data-i18n="blog_read_more">
+                        {{ lang.blog_read_more }} <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </article>
+                <article class="blog-card">
+                    <div class="blog-category" data-i18n="form_category_administrative">Ma'muriy Yo'nalish</div>
+                    <h3 class="blog-card-title">Ma'muriy huquqbuzarlik bayonnomasiga qanday e'tiroz bildiriladi?</h3>
+                    <p class="blog-card-excerpt">Agar siz YTH yoki boshqa ma'muriy bayonnomadagi ayblovlarga rozi
+                        bo'lmasangiz, qonuniy e'tiroz yozish va dalillarni taqdim etish qoidalari haqida maqola.</p>
+                    <a href="#" class="blog-read-btn"
+                        data-title-uz="Ma'muriy huquqbuzarlik bayonnomasiga qanday e'tiroz bildiriladi?"
+                        data-title-ru="Как возразить против протокола об административном правонарушении?"
+                        data-content-uz="Agar siz YTH yoki boshqa ma'muriy bayonnomadagi ayblovlarga rozi bo'lmasangiz, qonuniy e'tiroz yozish va dalillarni taqdim etish qoidalari haqida maqola. Ma'muriy bayonnoma tuzilgan vaqtda e'tirozlaringiz bo'lsa, ularni maxsus katakda yozma ravishda qayd etishingiz shart. Bu keyinchalik sudda sizning manfaatingizni himoya qilishda huquqiy himoyani ta'minlaydi."
+                        data-content-ru="Статья о правилах составления законных возражений и представления доказательств, если вы не согласны с обвинениями в протоколе ДТП или иного административного правонарушения. При наличии возражений на момент составления протокола вы обязаны зафиксировать их в письменном виде в специальной графе. Это послужит важным доказательством при защите ваших интересов в суде."
+                        data-law-code-uz="Ma'muriy javobgarlik to'g'risidagi kodeks"
+                        data-law-code-ru="Кодекс об административной ответственности" data-law-article-uz="282-modda"
+                        data-law-article-ru="Статья 282" data-i18n="blog_read_more">
+                        {{ lang.blog_read_more }} <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </article>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+
+    <!-- About Section (Credentials & Biography) -->
+    <section class="about" id="about">
+        <div class="about-bg-accent"></div>
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="nav_about">{{ lang.nav_about }}</span>
+                <h2 class="section-title" data-i18n="about_title">{{ lang.about_title }}</h2>
+                <div class="section-line"></div>
+                <p class="section-subtitle" data-i18n="about_subtitle">{{ lang.about_subtitle }}</p>
+            </div>
+
+            <div class="about-grid">
+                <!-- Card 1 -->
+                <div class="about-card">
+                    <div class="about-icon-box">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <h3 class="about-card-title" data-i18n="about_card1_title">{{ lang.about_card1_title }}</h3>
+                    <p class="about-card-desc" data-i18n="about_card1_desc">{{ lang.about_card1_desc }}</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="about-card">
+                    <div class="about-icon-box">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <h3 class="about-card-title" data-i18n="about_card2_title">{{ lang.about_card2_title }}</h3>
+                    <p class="about-card-desc" data-i18n="about_card2_desc">{{ lang.about_card2_desc }}</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="about-card">
+                    <div class="about-icon-box">
+                        <i class="fa-solid fa-handshake"></i>
+                    </div>
+                    <h3 class="about-card-title" data-i18n="about_card3_title">{{ lang.about_card3_title }}</h3>
+                    <p class="about-card-desc" data-i18n="about_card3_desc">{{ lang.about_card3_desc }}</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="about-card">
+                    <div class="about-icon-box">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="about-card-title" data-i18n="about_card4_title">{{ lang.about_card4_title }}</h3>
+                    <p class="about-card-desc" data-i18n="about_card4_desc">{{ lang.about_card4_desc }}</p>
+                </div>
+            </div>
+
+            <!-- Credentials Details Grid (License, Education, Experience) -->
+            <div class="credentials-wrapper">
+                <h3 class="credentials-heading" data-i18n="cred_title">{{ lang.cred_title }}</h3>
+                <div class="credentials-grid">
+                    <div class="cred-item">
+                        <span class="cred-label" data-i18n="cred_license_label">{{ lang.cred_license_label }}</span>
+                        <p class="cred-value" data-i18n="cred_license_val">{{ lang.cred_license_val }}</p>
+                    </div>
+                    <div class="cred-item">
+                        <span class="cred-label" data-i18n="cred_edu_label">{{ lang.cred_edu_label }}</span>
+                        <p class="cred-value" data-i18n="cred_edu_val">{{ lang.cred_edu_val }}</p>
+                    </div>
+                    <div class="cred-item">
+                        <span class="cred-label" data-i18n="cred_exp_label">{{ lang.cred_exp_label }}</span>
+                        <p class="cred-value" data-i18n="cred_exp_val">{{ lang.cred_exp_val }}</p>
+                    </div>
+                    <div class="cred-item">
+                        <span class="cred-label" data-i18n="cred_cert_label">{{ lang.cred_cert_label }}</span>
+                        <p class="cred-value" data-i18n="cred_cert_val">{{ lang.cred_cert_val }}</p>
+                    </div>
+                    <div class="cred-item">
+                        <span class="cred-label" data-i18n="cred_awards_label">{{ lang.cred_awards_label }}</span>
+                        <p class="cred-value" data-i18n="cred_awards_val">{{ lang.cred_awards_val }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ (Savol-javob) Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">FAQ</span>
+                <h2 class="section-title" data-i18n="faq_title">{{ lang.faq_title }}</h2>
+                <div class="section-line"></div>
+                <p class="section-subtitle" data-i18n="faq_subtitle">{{ lang.faq_subtitle }}</p>
+            </div>
+
+            <div class="faq-list">
+                <!-- Question 1 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-i18n="faq_q1">{{ lang.faq_q1 }}</span>
+                        <i class="fa-solid fa-chevron-down faq-chevron"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-i18n="faq_a1">{{ lang.faq_a1 }}</p>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-i18n="faq_q2">{{ lang.faq_q2 }}</span>
+                        <i class="fa-solid fa-chevron-down faq-chevron"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-i18n="faq_a2">{{ lang.faq_a2 }}</p>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-i18n="faq_q3">{{ lang.faq_q3 }}</span>
+                        <i class="fa-solid fa-chevron-down faq-chevron"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-i18n="faq_a3">{{ lang.faq_a3 }}</p>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-i18n="faq_q4">{{ lang.faq_q4 }}</span>
+                        <i class="fa-solid fa-chevron-down faq-chevron"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-i18n="faq_a4">{{ lang.faq_a4 }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacts / CTA Form Section -->
+    <section class="contacts" id="contacts">
+        <div class="container contacts-container">
+
+            <!-- Contact Details -->
+            <div class="contacts-info">
+                <div class="section-header left-align">
+                    <span class="section-tag" data-i18n="nav_contacts">{{ lang.nav_contacts }}</span>
+                    <h2 class="section-title" data-i18n="contact_title">{{ lang.contact_title }}</h2>
+                    <div class="section-line"></div>
+                    <p class="section-subtitle" data-i18n="contact_subtitle">{{ lang.contact_subtitle }}</p>
+                </div>
+
+                <div class="contact-methods">
+                    <!-- Phone -->
+                    <a href="tel:+998991259009" class="contact-item-card">
+                        <div class="contact-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <span class="contact-label" data-i18n="contact_phone">{{ lang.contact_phone }}</span>
+                            <span class="contact-value">+998 (99) 125-90-09</span>
+                        </div>
+                    </a>
+
+                    <!-- Telegram -->
+                    <a href="https://t.me/shuhriddin_26" target="_blank" rel="noopener noreferrer"
+                        class="contact-item-card">
+                        <div class="contact-icon">
+                            <i class="fa-brands fa-telegram"></i>
+                        </div>
+                        <div class="contact-text">
+                            <span class="contact-label">Telegram</span>
+                            <span class="contact-value">@shuhriddin_26</span>
+                        </div>
+                    </a>
+
+                    <!-- WhatsApp -->
+                    <a href="https://wa.me/998991259009" target="_blank" rel="noopener noreferrer"
+                        class="contact-item-card">
+                        <div class="contact-icon">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-text">
+                            <span class="contact-label">WhatsApp</span>
+                            <span class="contact-value">+998 (99) 125-90-09</span>
+                        </div>
+                    </a>
+
+                    <!-- Instagram -->
+                    <a href="https://instagram.com/shuhriddin_26" target="_blank" rel="noopener noreferrer"
+                        class="contact-item-card">
+                        <div class="contact-icon">
+                            <i class="fa-brands fa-instagram"></i>
+                        </div>
+                        <div class="contact-text">
+                            <span class="contact-label">Instagram</span>
+                            <span class="contact-value">shuhriddin_26</span>
+                        </div>
+                    </a>
+
+                    <!-- Gmail -->
+                    <a href="mailto:shuhriddin26@gmail.com" class="contact-item-card">
+                        <div class="contact-icon">
+                            <i class="fa-regular fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <span class="contact-label">Gmail</span>
+                            <span class="contact-value">shuhriddin26@gmail.com</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Embedded Form Card -->
+            <div class="contacts-form-wrapper">
+                <div class="form-card">
+                    <h3 class="form-card-title" data-i18n="modal_title">{{ lang.modal_title }}</h3>
+                    <p class="form-card-subtitle" data-i18n="modal_desc">{{ lang.modal_desc }}</p>
+
+                    <form class="application-form inline-form" action="{% url 'submit_application' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="inline-name" class="sr-only">Name</label>
+                            <div class="input-wrapper">
+                                <i class="fa-regular fa-user input-icon"></i>
+                                <input type="text" id="inline-name" name="name" required
+                                    placeholder="{{ lang.form_name_placeholder }}"
+                                    data-i18n-placeholder="form_name_placeholder">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inline-phone" class="sr-only">Phone</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-phone input-icon"></i>
+                                <input type="tel" id="inline-phone" class="phone-mask" name="phone" required
+                                    placeholder="{{ lang.form_phone_placeholder }}"
+                                    data-i18n-placeholder="form_phone_placeholder" value="+998">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inline-category" class="sr-only">Category</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-layer-group input-icon"></i>
+                                <select id="inline-category" name="category" required>
+                                    <option value="" disabled selected data-i18n="form_category_select">
+                                        {{ lang.form_category_select }}</option>
+                                    <option value="criminal" data-i18n="form_category_criminal">
+                                        {{ lang.form_category_criminal }}</option>
+                                    <option value="administrative" data-i18n="form_category_administrative">
+                                        {{ lang.form_category_administrative }}</option>
+                                    <option value="civil" data-i18n="form_category_civil">{{ lang.form_category_civil }}
+                                    </option>
+                                    <option value="business" data-i18n="form_category_business">
+                                        {{ lang.form_category_business }}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inline-description" class="sr-only">Description</label>
+                            <div class="input-wrapper">
+                                <i class="fa-regular fa-comment-dots input-icon textarea-icon"></i>
+                                <textarea id="inline-description" name="description" rows="3"
+                                    placeholder="{{ lang.form_desc_placeholder }}"
+                                    data-i18n-placeholder="form_desc_placeholder"></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block" data-i18n="form_submit">
+                            {{ lang.form_submit }}
+                        </button>
+                    </form>
+
+                    <!-- Alert Status Messages -->
+                    <div class="status-msg success-msg hidden">
+                        <div class="status-icon"><i class="fa-solid fa-circle-check"></i></div>
+                        <div class="status-content">
+                            <h4 data-i18n="success_title">{{ lang.success_title }}</h4>
+                            <p data-i18n="success_message">{{ lang.success_message }}</p>
+                        </div>
+                    </div>
+
+                    <div class="status-msg error-msg hidden">
+                        <div class="status-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+                        <div class="status-content">
+                            <h4 data-i18n="error_title">{{ lang.error_title }}</h4>
+                            <p data-i18n="error_message">{{ lang.error_message }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="#hero" class="logo">
+                    <img src="{% static 'images/logo.svg' %}" alt="Logo" class="logo-img"
+                        style="width: 48px; height: 48px; object-fit: contain; display: block; transition: all 0.35s ease; filter: invert(1);">
+                </a>
+                <p class="footer-tagline" data-i18n="footer_tagline">{{ lang.footer_tagline }}</p>
+                <div class="footer-socials">
+                    <a href="https://t.me/shuhriddin_26" target="_blank" rel="noopener noreferrer"><i
+                            class="fa-brands fa-telegram"></i></a>
+                    <a href="https://wa.me/998991259009" target="_blank" rel="noopener noreferrer"><i
+                            class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://instagram.com/shuhriddin_26" target="_blank" rel="noopener noreferrer"><i
+                            class="fa-brands fa-instagram"></i></a>
+                    <a href="mailto:shuhriddin26@gmail.com"><i class="fa-regular fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Menyular</h4>
+                <ul>
+                    <li><a href="#hero">Bosh sahifa</a></li>
+                    <li><a href="#services" data-i18n="nav_services">{{ lang.nav_services }}</a></li>
+                    <li><a href="#cases" data-i18n="cases_title">{{ lang.cases_title }}</a></li>
+                    <li><a href="#blog" data-i18n="blog_title">{{ lang.blog_title }}</a></li>
+                    <li><a href="#about" data-i18n="nav_about">{{ lang.nav_about }}</a></li>
+                    <li><a href="#contacts" data-i18n="nav_contacts">{{ lang.nav_contacts }}</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact-info">
+                <h4>Kontakt</h4>
+                <p><i class="fa-solid fa-phone"></i> +998 (99) 125-90-09</p>
+                <p><i class="fa-regular fa-envelope"></i> shuhriddin26@gmail.com</p>
+                <p><i class="fa-solid fa-scale-balanced"></i> Toshkent, O'zbekiston</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p class="footer-disclaimer-text" data-i18n="footer_disclaimer">{{ lang.footer_disclaimer }}</p>
+                <p class="footer-copy">&copy; 2026 {{ lang.logo_title }}. <span data-i18n="footer_rights">{{
+                        lang.footer_rights }}</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Consultation Modal Window -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-box">
+            <button class="modal-close" id="modal-close" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="modal-header">
+                <div class="modal-logo-icon">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                </div>
+                <h3 class="modal-title-text" data-i18n="modal_title">{{ lang.modal_title }}</h3>
+                <p class="modal-subtitle-text" data-i18n="modal_desc">{{ lang.modal_desc }}</p>
+            </div>
+
+            <form class="application-form modal-form" action="{% url 'submit_application' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="modal-name" data-i18n="form_name_placeholder">{{ lang.form_name_placeholder }}</label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-user input-icon"></i>
+                        <input type="text" id="modal-name" name="name" required
+                            placeholder="{{ lang.form_name_placeholder }}"
+                            data-i18n-placeholder="form_name_placeholder">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="modal-phone" data-i18n="form_phone_placeholder">{{ lang.form_phone_placeholder
+                        }}</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-phone input-icon"></i>
+                        <input type="tel" id="modal-phone" class="phone-mask" name="phone" required
+                            placeholder="{{ lang.form_phone_placeholder }}"
+                            data-i18n-placeholder="form_phone_placeholder" value="+998">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="modal-category" data-i18n="form_category_label">{{ lang.form_category_label }}</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-layer-group input-icon"></i>
+                        <select id="modal-category" name="category" required>
+                            <option value="" disabled selected data-i18n="form_category_select">
+                                {{ lang.form_category_select }}</option>
+                            <option value="criminal" data-i18n="form_category_criminal">
+                                {{ lang.form_category_criminal }}</option>
+                            <option value="administrative" data-i18n="form_category_administrative">
+                                {{ lang.form_category_administrative }}</option>
+                            <option value="civil" data-i18n="form_category_civil">{{ lang.form_category_civil }}
+                            </option>
+                            <option value="business" data-i18n="form_category_business">
+                                {{ lang.form_category_business }}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="modal-description" data-i18n="form_desc_placeholder">{{ lang.form_desc_placeholder
+                        }}</label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-comment-dots input-icon textarea-icon"></i>
+                        <textarea id="modal-description" name="description" rows="3"
+                            placeholder="{{ lang.form_desc_placeholder }}"
+                            data-i18n-placeholder="form_desc_placeholder"></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block modal-submit-btn" data-i18n="form_submit">
+                    {{ lang.form_submit }}
+                </button>
+            </form>
+
+            <!-- Modal Alert Status Messages -->
+            <div class="status-msg success-msg hidden" id="modal-success-msg">
+                <div class="status-icon"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="status-content">
+                    <h4 data-i18n="success_title">{{ lang.success_title }}</h4>
+                    <p data-i18n="success_message">{{ lang.success_message }}</p>
+                </div>
+            </div>
+
+            <div class="status-msg error-msg hidden" id="modal-error-msg">
+                <div class="status-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+                <div class="status-content">
+                    <h4 data-i18n="error_title">{{ lang.error_title }}</h4>
+                    <p data-i18n="error_message">{{ lang.error_message }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog Article Modal Window -->
+    <div class="modal-overlay" id="blog-modal">
+        <div class="modal-box blog-modal-box">
+            <button class="modal-close" id="blog-modal-close" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="modal-header">
+                <div class="modal-logo-icon">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+                <div class="blog-modal-law" id="blog-modal-law"></div>
+                <h3 class="modal-title-text blog-modal-title" id="blog-modal-title" style="margin-top: 10px;"></h3>
+                <div class="section-line" style="margin: 15px auto 20px;"></div>
+            </div>
+
+            <div class="blog-modal-content" id="blog-modal-content">
+            </div>
+        </div>
+    </div>
+
+    <!-- Embedded Translations Dictionary -->
+    <script id="translations-data" type="application/json">
+        {
+            {
+                translations_json | safe
+            }
+        }
+    </script>
+
+    <!-- Main JavaScript file -->
+    <script src="{% static 'js/main.js' %}?v=1.1" defer></script>
+</body>
+
+</html>
