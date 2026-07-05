@@ -147,14 +147,10 @@
                     <p class="service-desc" data-i18n="service_criminal_desc">{{ lang.service_criminal_desc }}</p>
 
                     <ul class="service-list">
-                        <li><i class="fa-solid fa-check list-check"></i> <span
-                                data-i18n="service_criminal_item1">{{ lang.service_criminal_item1 }}</span></li>
-                        <li><i class="fa-solid fa-check list-check"></i> <span
-                                data-i18n="service_criminal_item2">{{ lang.service_criminal_item2 }}</span></li>
-                        <li><i class="fa-solid fa-check list-check"></i> <span
-                                data-i18n="service_criminal_item3">{{ lang.service_criminal_item3 }}</span></li>
-                        <li><i class="fa-solid fa-check list-check"></i> <span
-                                data-i18n="service_criminal_item4">{{ lang.service_criminal_item4 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_criminal_item1">{{ lang.service_criminal_item1 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_criminal_item2">{{ lang.service_criminal_item2 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_criminal_item3">{{ lang.service_criminal_item3 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_criminal_item4">{{ lang.service_criminal_item4 }}</span></li>
                     </ul>
 
                     <button class="btn btn-outline-dark card-btn open-modal-btn" data-category="criminal"
@@ -203,14 +199,10 @@
                     <p class="service-desc" data-i18n="service_civil_desc">{{ lang.service_civil_desc }}</p>
 
                     <ul class="service-list">
-                        <li><i class="fa-solid fa-check list-check"></i> <span
-                                data-i18n="service_civil_item1">{{ lang.service_civil_item1 }}</span></li>
-                        <li><i class="fa-solid fa-check list-check"></i> <span
-                                data-i18n="service_civil_item2">{{ lang.service_civil_item2 }}</span></li>
-                        <li><i class="fa-solid fa-check list-check"></i> <span
-                                data-i18n="service_civil_item3">{{ lang.service_civil_item3 }}</span></li>
-                        <li><i class="fa-solid fa-check list-check"></i> <span
-                                data-i18n="service_civil_item4">{{ lang.service_civil_item4 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_civil_item1">{{ lang.service_civil_item1 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_civil_item2">{{ lang.service_civil_item2 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_civil_item3">{{ lang.service_civil_item3 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_civil_item4">{{ lang.service_civil_item4 }}</span></li>
                     </ul>
 
                     <button class="btn btn-outline-dark card-btn open-modal-btn" data-category="civil"
@@ -228,14 +220,10 @@
                     <p class="service-desc" data-i18n="service_business_desc">{{ lang.service_business_desc }}</p>
 
                     <ul class="service-list">
-                        <li><i class="fa-solid fa-check list-check"></i> <span
-                                data-i18n="service_business_item1">{{ lang.service_business_item1 }}</span></li>
-                        <li><i class="fa-solid fa-check list-check"></i> <span
-                                data-i18n="service_business_item2">{{ lang.service_business_item2 }}</span></li>
-                        <li><i class="fa-solid fa-check list-check"></i> <span
-                                data-i18n="service_business_item3">{{ lang.service_business_item3 }}</span></li>
-                        <li><i class="fa-solid fa-check list-check"></i> <span
-                                data-i18n="service_business_item4">{{ lang.service_business_item4 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_business_item1">{{ lang.service_business_item1 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_business_item2">{{ lang.service_business_item2 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_business_item3">{{ lang.service_business_item3 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_business_item4">{{ lang.service_business_item4 }}</span></li>
                     </ul>
 
                     <button class="btn btn-outline-dark card-btn open-modal-btn" data-category="business"
@@ -333,31 +321,42 @@
                 <p class="section-subtitle" data-i18n="blog_subtitle">{{ lang.blog_subtitle }}</p>
             </div>
 
-            <div class="blog-grid">
-                {% if posts %}
-                {% for post in posts %}
-                <article class="blog-card">
-                    <div class="blog-category">{{ post.get_category_display }}</div>
-                    <h3 class="blog-card-title">{{ post.title }}</h3>
-                    <p class="blog-card-excerpt">{{ post.content|striptags|truncatewords:25 }}</p>
-                    <a href="#" class="blog-read-btn" data-title="{{ post.title|escape }}"
-                        data-content="{{ post.content|escape }}" data-law-code="{{ post.law_code|escape }}"
-                        data-law-article="{{ post.law_article|escape }}" data-i18n="blog_read_more">
-                        {{ lang.blog_read_more }} <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                </article>
-                {% endfor %}
-                {% else %}
-                <!-- Premium SEO Articles Fallback (Boosts Google indexing) -->
-                <article class="blog-card">
-                    <div class="blog-category" data-i18n="form_category_criminal">Jinoiy Yo'nalish</div>
-                    <h3 class="blog-card-title">Sudlanganlik holati qachon va qanday tartibda tugaydi?</h3>
-                    <p class="blog-card-excerpt">Sudlanganlik holatining tugashi yoki olib tashlanishi qonunchilikda
-                        belgilangan muddatlar va shartlar asosida amalga oshiriladi. Batafsil yuridik tahlil...</p>
-                    <a href="#" class="blog-read-btn"
-                        data-title-uz="Sudlanganlik holati qachon va qanday tartibda tugaydi?"
-                        data-title-ru="Когда и в каком порядке прекращается состояние судимости?"
-                        data-content-uz="O'zbekiston Respublikasi Jinoyat kodeksi
+            <div class="blog-slider-container">
+                <div class="blog-slider-inner">
+                    <button class="blog-arrow blog-arrow-prev" id="blog-arrow-prev">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <div class="blog-grid">
+                        {% if posts %}
+                        {% for post in posts %}
+                        <article class="blog-card">
+                            <div class="blog-category">{{ post.get_category_display }}</div>
+                            <h3 class="blog-card-title">{{ post.title }}</h3>
+                            <p class="blog-card-excerpt">{{ post.content|striptags|truncatewords:25 }}</p>
+                            <a href="#" class="blog-read-btn" data-title="{{ post.title|escape }}"
+                                data-title-ru="{{ post.title_ru|escape }}" data-content="{{ post.content|escape }}"
+                                data-content-ru="{{ post.content_ru|escape }}"
+                                data-law-code="{{ post.law_code|escape }}"
+                                data-law-code-ru="{{ post.law_code_ru|escape }}"
+                                data-law-article="{{ post.law_article|escape }}"
+                                data-law-article-ru="{{ post.law_article_ru|escape }}" data-i18n="blog_read_more">
+                                {{ lang.blog_read_more }} <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </article>
+                        {% endfor %}
+                        {% else %}
+                        <!-- Premium SEO Articles Fallback (Boosts Google indexing) -->
+                        <article class="blog-card">
+                            <div class="blog-category" data-i18n="form_category_criminal">Jinoiy Yo'nalish</div>
+                            <h3 class="blog-card-title">Sudlanganlik holati qachon va qanday tartibda tugaydi?</h3>
+                            <p class="blog-card-excerpt">Sudlanganlik holatining tugashi yoki olib tashlanishi
+                                qonunchilikda
+                                belgilangan muddatlar va shartlar asosida amalga oshiriladi. Batafsil yuridik tahlil...
+                            </p>
+                            <a href="#" class="blog-read-btn"
+                                data-title-uz="Sudlanganlik holati qachon va qanday tartibda tugaydi?"
+                                data-title-ru="Когда и в каком порядке прекращается состояние судимости?"
+                                data-content-uz="O'zbekiston Respublikasi Jinoyat kodeksi
 <span class='law-accent'>78-modda. Sudlanganlik holatining tugallanishi</span>
 Shaxsning sudlanganlik holati quyidagi paytlarda tugallanadi:
 <span class='law-accent'>a)</span> shartli hukm qilinganlarga nisbatan — sinov muddati tugagan kundan boshlab;
@@ -367,7 +366,7 @@ Shaxsning sudlanganlik holati quyidagi paytlarda tugallanadi:
 <span class='law-accent'>d)</span> besh yildan koʻp boʻlmagan muddatga ozodlikdan mahrum qilish jazosi oʻtalganidan keyin — toʻrt yil oʻtgach;
 <span class='law-accent'>e)</span> besh yildan ortiq, lekin oʻn yildan koʻp boʻlmagan muddatga ozodlikdan mahrum qilish jazosi oʻtalganidan keyin — yetti yil oʻtgach;
 <span class='law-accent'>j)</span> oʻn yildan ortiq, lekin oʻn besh yildan koʻp boʻlmagan muddatga ozodlikdan mahrum qilish jazosi oʻtalganidan keyin — oʻn yil oʻtgach."
-                        data-content-ru="Уголовный кодекс Республики Узбекистан
+                                data-content-ru="Уголовный кодекс Республики Узбекистан
 <span class='law-accent'>Статья 78. Погашение судимости</span>
 Состояние судимости прекращается:
 <span class='law-accent'>а)</span> в отношении условно осужденных — со дня истечения испытательного срока;
@@ -377,43 +376,57 @@ Shaxsning sudlanganlik holati quyidagi paytlarda tugallanadi:
 <span class='law-accent'>д)</span> по истечении четырех лет после отбытия наказания в виде лишения свободы на срок не более пяти лет;
 <span class='law-accent'>е)</span> по истечении семи лет после отбытия наказания в виде лишения свободы на срок более пяти лет, но не более десяти лет;
 <span class='law-accent'>ж)</span> по истечении десяти лет после отбытия наказания в виде лишения свободы на срок более десяти лет, но не более пятнадцати лет."
-                        data-law-code-uz="Jinoyat kodeksi" data-law-code-ru="Уголовный кодекс"
-                        data-law-article-uz="78-modda" data-law-article-ru="Статья 78" data-i18n="blog_read_more">
-                        {{ lang.blog_read_more }} <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                </article>
-                <article class="blog-card">
-                    <div class="blog-category" data-i18n="form_category_criminal">Jinoiy Yo'nalish</div>
-                    <h3 class="blog-card-title">Tergov jarayonida advokat chaqirish huquqining ahamiyati</h3>
-                    <p class="blog-card-excerpt">Har bir gumon qilinuvchi yoki ayblanuvchi tergov boshlangan ilk
-                        daqiqalardanoq himoyachi yollash va u kelgunga qadar ko'rsatma bermaslik huquqiga ega.</p>
-                    <a href="#" class="blog-read-btn"
-                        data-title-uz="Tergov jarayonida advokat chaqirish huquqining ahamiyati"
-                        data-title-ru="Значение права на вызов адвоката в ходе следственного процесса"
-                        data-content-uz="Har bir gumon qilinuvchi yoki ayblanuvchi tergov boshlangan ilk daqiqalardanoq himoyachi yollash va u kelgunga qadar ko'rsatma bermaslik huquqiga ega. Bu qonuniy huquq tergov jarayonida yuzaga kelishi mumkin bo'lgan turli bosimlar va asossiz ayblovlarning oldini olishda asosiy qalqon bo'lib xizmat qiladi. Huquqlaringiz poymol etilishiga yo'l qo'ymang."
-                        data-content-ru="Каждый подозреваемый или обвиняемый имеет право нанять защитника с первых минут начала следствия и не давать показаний до его прибытия. Это законное право служит основным щитом для предотвращения различных давлений и необоснованных обвинений в процессе расследования. Не допускайте ущемления ваших прав."
-                        data-law-code-uz="Jinoyat-protsessual kodeksi" data-law-code-ru="Уголовно-процессуальный кодекс"
-                        data-law-article-uz="49-modda" data-law-article-ru="Статья 49" data-i18n="blog_read_more">
-                        {{ lang.blog_read_more }} <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                </article>
-                <article class="blog-card">
-                    <div class="blog-category" data-i18n="form_category_administrative">Ma'muriy Yo'nalish</div>
-                    <h3 class="blog-card-title">Ma'muriy huquqbuzarlik bayonnomasiga qanday e'tiroz bildiriladi?</h3>
-                    <p class="blog-card-excerpt">Agar siz YTH yoki boshqa ma'muriy bayonnomadagi ayblovlarga rozi
-                        bo'lmasangiz, qonuniy e'tiroz yozish va dalillarni taqdim etish qoidalari haqida maqola.</p>
-                    <a href="#" class="blog-read-btn"
-                        data-title-uz="Ma'muriy huquqbuzarlik bayonnomasiga qanday e'tiroz bildiriladi?"
-                        data-title-ru="Как возразить против протокола об административном правонарушении?"
-                        data-content-uz="Agar siz YTH yoki boshqa ma'muriy bayonnomadagi ayblovlarga rozi bo'lmasangiz, qonuniy e'tiroz yozish va dalillarni taqdim etish qoidalari haqida maqola. Ma'muriy bayonnoma tuzilgan vaqtda e'tirozlaringiz bo'lsa, ularni maxsus katakda yozma ravishda qayd etishingiz shart. Bu keyinchalik sudda sizning manfaatingizni himoya qilishda huquqiy himoyani ta'minlaydi."
-                        data-content-ru="Статья о правилах составления законных возражений и представления доказательств, если вы не согласны с обвинениями в протоколе ДТП или иного административного правонарушения. При наличии возражений на момент составления протокола вы обязаны зафиксировать их в письменном виде в специальной графе. Это послужит важным доказательством при защите ваших интересов в суде."
-                        data-law-code-uz="Ma'muriy javobgarlik to'g'risidagi kodeks"
-                        data-law-code-ru="Кодекс об административной ответственности" data-law-article-uz="282-modda"
-                        data-law-article-ru="Статья 282" data-i18n="blog_read_more">
-                        {{ lang.blog_read_more }} <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                </article>
-                {% endif %}
+                                data-law-code-uz="Jinoyat kodeksi" data-law-code-ru="Уголовный кодекс"
+                                data-law-article-uz="78-modda" data-law-article-ru="Статья 78"
+                                data-i18n="blog_read_more">
+                                {{ lang.blog_read_more }} <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </article>
+                        <article class="blog-card">
+                            <div class="blog-category" data-i18n="form_category_criminal">Jinoiy Yo'nalish</div>
+                            <h3 class="blog-card-title">Tergov jarayonida advokat chaqirish huquqining ahamiyati</h3>
+                            <p class="blog-card-excerpt">Har bir gumon qilinuvchi yoki ayblanuvchi tergov boshlangan ilk
+                                daqiqalardanoq himoyachi yollash va u kelgunga qadar ko'rsatma bermaslik huquqiga ega.
+                            </p>
+                            <a href="#" class="blog-read-btn"
+                                data-title-uz="Tergov jarayonida advokat chaqirish huquqining ahamiyati"
+                                data-title-ru="Значение права на вызов адвоката в ходе следственного процесса"
+                                data-content-uz="Har bir gumon qilinuvchi yoki ayblanuvchi tergov boshlangan ilk daqiqalardanoq himoyachi yollash va u kelgunga qadar ko'rsatma bermaslik huquqiga ega. Bu qonuniy huquq tergov jarayonida yuzaga kelishi mumkin bo'lgan turli bosimlar va asossiz ayblovlarning oldini olishda asosiy qalqon bo'lib xizmat qiladi. Huquqlaringiz poymol etilishiga yo'l qo'ymang."
+                                data-content-ru="Каждый подозреваемый или обвиняемый имеет право нанять защитника с первых минут начала следствия и не давать показаний до его прибытия. Это законное право служит основным щитом для предотвращения различных давлений и необоснованных обвинений в процессе расследования. Не допускайте ущемления ваших прав."
+                                data-law-code-uz="Jinoyat-protsessual kodeksi"
+                                data-law-code-ru="Уголовно-процессуальный кодекс" data-law-article-uz="49-modda"
+                                data-law-article-ru="Статья 49" data-i18n="blog_read_more">
+                                {{ lang.blog_read_more }} <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </article>
+                        <article class="blog-card">
+                            <div class="blog-category" data-i18n="form_category_administrative">Ma'muriy Yo'nalish</div>
+                            <h3 class="blog-card-title">Ma'muriy huquqbuzarlik bayonnomasiga qanday e'tiroz bildiriladi?
+                            </h3>
+                            <p class="blog-card-excerpt">Agar siz YTH yoki boshqa ma'muriy bayonnomadagi ayblovlarga
+                                rozi
+                                bo'lmasangiz, qonuniy e'tiroz yozish va dalillarni taqdim etish qoidalari haqida maqola.
+                            </p>
+                            <a href="#" class="blog-read-btn"
+                                data-title-uz="Ma'muriy huquqbuzarlik bayonnomasiga qanday e'tiroz bildiriladi?"
+                                data-title-ru="Как возразить против протокола об административном правонарушении?"
+                                data-content-uz="Agar siz YTH yoki boshqa ma'muriy bayonnomadagi ayblovlarga rozi bo'lmasangiz, qonuniy e'tiroz yozish va dalillarni taqdim etish qoidalari haqida maqola. Ma'muriy bayonnoma tuzilgan vaqtda e'tirozlaringiz bo'lsa, ularni maxsus katakda yozma ravishda qayd etishingiz shart. Bu keyinchalik sudda sizning manfaatingizni himoya qilishda huquqiy himoyani ta'minlaydi."
+                                data-content-ru="Статья о правилах составления законных возражений и представления доказательств, если вы не согласны с обвинениями в протоколе ДТП или иного административного правонарушения. При наличии возражений на момент составления протокола вы обязаны зафиксировать их в письменном виде в специальной графе. Это послужит важным доказательством при защите ваших интересов в суде."
+                                data-law-code-uz="Ma'muriy javobgarlik to'g'risidagi kodeks"
+                                data-law-code-ru="Кодекс об административной ответственности"
+                                data-law-article-uz="282-modda" data-law-article-ru="Статья 282"
+                                data-i18n="blog_read_more">
+                                {{ lang.blog_read_more }} <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </article>
+                        {% endif %}
+                    </div>
+                    <button class="blog-arrow blog-arrow-next" id="blog-arrow-next">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+                <!-- Blog Pagination Dots -->
+                <div class="blog-pagination" id="blog-pagination"></div>
             </div>
         </div>
     </section>
@@ -576,54 +589,54 @@ Shaxsning sudlanganlik holati quyidagi paytlarda tugallanadi:
                         </div>
                         <div class="contact-text">
                             <span class="contact-label" data-i18n="contact_phone">{{ lang.contact_phone }}</span>
-                            <span class="contact-value">+998 (99) 125-90-09</span>
+                            <span class="contact-value">+998 (94) 083-44-33</span>
                         </div>
                     </a>
 
                     <!-- Telegram -->
-                    <a href="https://t.me/shuhriddin_26" target="_blank" rel="noopener noreferrer"
+                    <a href="https://t.me/arbitrium_legal" target="_blank" rel="noopener noreferrer"
                         class="contact-item-card">
                         <div class="contact-icon">
                             <i class="fa-brands fa-telegram"></i>
                         </div>
                         <div class="contact-text">
                             <span class="contact-label">Telegram</span>
-                            <span class="contact-value">@shuhriddin_26</span>
+                            <span class="contact-value">@arbitrium_legal</span>
                         </div>
                     </a>
 
                     <!-- WhatsApp -->
-                    <a href="https://wa.me/998991259009" target="_blank" rel="noopener noreferrer"
+                    <a href="https://wa.me/998940834433" target="_blank" rel="noopener noreferrer"
                         class="contact-item-card">
                         <div class="contact-icon">
                             <i class="fa-brands fa-whatsapp"></i>
                         </div>
                         <div class="contact-text">
                             <span class="contact-label">WhatsApp</span>
-                            <span class="contact-value">+998 (99) 125-90-09</span>
+                            <span class="contact-value">+998 (94) 083-44-33</span>
                         </div>
                     </a>
 
                     <!-- Instagram -->
-                    <a href="https://instagram.com/shuhriddin_26" target="_blank" rel="noopener noreferrer"
+                    <a href="https://instagram.com/arbitrium_legal" target="_blank" rel="noopener noreferrer"
                         class="contact-item-card">
                         <div class="contact-icon">
                             <i class="fa-brands fa-instagram"></i>
                         </div>
                         <div class="contact-text">
                             <span class="contact-label">Instagram</span>
-                            <span class="contact-value">shuhriddin_26</span>
+                            <span class="contact-value">arbitrium_legal</span>
                         </div>
                     </a>
 
                     <!-- Gmail -->
-                    <a href="mailto:shuhriddin26@gmail.com" class="contact-item-card">
+                    <a href="mailto:arbitriumlegal.uz@gmail.com" class="contact-item-card">
                         <div class="contact-icon">
                             <i class="fa-regular fa-envelope"></i>
                         </div>
                         <div class="contact-text">
                             <span class="contact-label">Gmail</span>
-                            <span class="contact-value">shuhriddin26@gmail.com</span>
+                            <span class="contact-value">shuxriddinsolixov2023@gmail.com</span>
                         </div>
                     </a>
                 </div>
@@ -747,8 +760,8 @@ Shaxsning sudlanganlik holati quyidagi paytlarda tugallanadi:
 
             <div class="footer-contact-info">
                 <h4>Kontakt</h4>
-                <p><i class="fa-solid fa-phone"></i> +998 (99) 125-90-09</p>
-                <p><i class="fa-regular fa-envelope"></i> shuhriddin26@gmail.com</p>
+                <p><i class="fa-solid fa-phone"></i> +998 (94) 083-44-33</p>
+                <p><i class="fa-regular fa-envelope"></i> arbitrium_legal@gmail.com</p>
                 <p><i class="fa-solid fa-scale-balanced"></i> Toshkent, O'zbekiston</p>
             </div>
         </div>
@@ -756,8 +769,7 @@ Shaxsning sudlanganlik holati quyidagi paytlarda tugallanadi:
         <div class="footer-bottom">
             <div class="container footer-bottom-container">
                 <p class="footer-disclaimer-text" data-i18n="footer_disclaimer">{{ lang.footer_disclaimer }}</p>
-                <p class="footer-copy">&copy; 2026 {{ lang.logo_title }}. <span data-i18n="footer_rights">{{
-                        lang.footer_rights }}</span></p>
+                <p class="footer-copy">&copy; 2026 {{ lang.logo_title }}. <span data-i18n="footer_rights">{{ lang.footer_rights }}</span></p>
             </div>
         </div>
     </footer>
@@ -790,8 +802,7 @@ Shaxsning sudlanganlik holati quyidagi paytlarda tugallanadi:
                 </div>
 
                 <div class="form-group">
-                    <label for="modal-phone" data-i18n="form_phone_placeholder">{{ lang.form_phone_placeholder
-                        }}</label>
+                    <label for="modal-phone" data-i18n="form_phone_placeholder">{{ lang.form_phone_placeholder }}</label>
                     <div class="input-wrapper">
                         <i class="fa-solid fa-phone input-icon"></i>
                         <input type="tel" id="modal-phone" class="phone-mask" name="phone" required
@@ -820,8 +831,7 @@ Shaxsning sudlanganlik holati quyidagi paytlarda tugallanadi:
                 </div>
 
                 <div class="form-group">
-                    <label for="modal-description" data-i18n="form_desc_placeholder">{{ lang.form_desc_placeholder
-                        }}</label>
+                    <label for="modal-description" data-i18n="form_desc_placeholder">{{ lang.form_desc_placeholder }}</label>
                     <div class="input-wrapper">
                         <i class="fa-regular fa-comment-dots input-icon textarea-icon"></i>
                         <textarea id="modal-description" name="description" rows="3"
@@ -876,13 +886,7 @@ Shaxsning sudlanganlik holati quyidagi paytlarda tugallanadi:
     </div>
 
     <!-- Embedded Translations Dictionary -->
-    <script id="translations-data" type="application/json">
-        {
-            {
-                translations_json | safe
-            }
-        }
-    </script>
+    <script id="translations-data" type="application/json">{{ translations_json|safe }}</script>
 
     <!-- Main JavaScript file -->
     <script src="{% static 'js/main.js' %}?v=1.1" defer></script>
