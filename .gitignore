@@ -148,3 +148,11 @@ Thumbs.db
 .vscode/settings.json
 .vscode/launch.json
 .vscode/tasks.json
+
+# Custom additions for strict ignore rules
+**/.env
+**/db.sqlite3
+**/*.pyc
+**/__pycache__/
+*.session
+*.session-journal
