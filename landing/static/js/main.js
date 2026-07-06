@@ -599,4 +599,378 @@ document.addEventListener('DOMContentLoaded', function() {
         updatePaginationDots(0);
     }
 
+    // ==========================================
+    // 11. Live Chat Widget Logic
+    // ==========================================
+    (function() {
+        const chatWidget = document.getElementById('chat-widget');
+        if (!chatWidget) return;
+
+        const chatTrigger = document.getElementById('chat-trigger');
+        const chatContainer = document.getElementById('chat-container');
+        const chatClose = document.getElementById('chat-close');
+        const chatProfileToggleBtn = document.getElementById('chat-profile-toggle-btn');
+        const chatProfileBox = document.getElementById('chat-profile-box');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInputMessage = document.getElementById('chat-input-message');
+        const chatSendBtn = document.getElementById('chat-send-btn');
+        const chatInputName = document.getElementById('chat-input-name');
+        const chatInputPhone = document.getElementById('chat-input-phone');
+        const chatSaveProfileBtn = document.getElementById('chat-save-profile-btn');
+        const chatBadge = document.getElementById('chat-badge');
+
+        let sessionId = localStorage.getItem('chat_session_id') || null;
+        let isOpen = false;
+        let activePollingInterval = null;
+        let backgroundPollingInterval = null;
+        let unreadCount = 0;
+        let lastMessageId = 0;
+
+        // Get language translation helper
+        let translations = {};
+        try {
+            const transDataEl = document.getElementById('translations-data');
+            if (transDataEl) {
+                translations = JSON.parse(transDataEl.textContent);
+            }
+        } catch (e) {
+            console.error("Translation parsing failed", e);
+        }
+
+        const currentLang = document.documentElement.lang || 'uz';
+
+        function t(key, defaultText = '') {
+            if (translations[currentLang] && translations[currentLang][key]) {
+                return translations[currentLang][key];
+            }
+            return defaultText;
+        }
+
+        // Apply translations to static labels in widget dynamically
+        function applyWidgetTranslations() {
+            // Find all elements with data-i18n inside chatWidget
+            chatWidget.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                const transText = t(key);
+                if (transText) el.innerHTML = transText;
+            });
+            
+            chatWidget.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                const transText = t(key);
+                if (transText) el.setAttribute('placeholder', transText);
+            });
+        }
+
+        applyWidgetTranslations();
+
+        // Initialize Chat session with backend
+        function initializeSession(callback) {
+            fetch('/chat/init/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ session_id: sessionId })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    sessionId = data.session_id;
+                    localStorage.setItem('chat_session_id', sessionId);
+                    
+                    if (data.client_name) chatInputName.value = data.client_name;
+                    if (data.client_phone) chatInputPhone.value = data.client_phone;
+                    
+                    if (callback) callback();
+                }
+            })
+            .catch(err => console.error("Chat initialization error:", err));
+        }
+
+        // Fetch messages
+        function fetchMessages(isSilent = false) {
+            if (!sessionId) return;
+
+            const markReadParam = isSilent ? 'false' : 'true';
+
+            fetch(`/chat/messages/?session_id=${sessionId}&mark_read=${markReadParam}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    const messages = data.messages;
+                    
+                    // Filter out existing messages
+                    let newMessages = [];
+                    if (lastMessageId === 0) {
+                        newMessages = messages;
+                    } else {
+                        newMessages = messages.filter(m => m.id > lastMessageId);
+                    }
+
+                    if (messages.length > 0) {
+                        // Mark last message ID
+                        lastMessageId = messages[messages.length - 1].id;
+                    }
+
+                    if (!isSilent) {
+                        if (newMessages.length > 0) {
+                            renderMessages(newMessages);
+                            scrollToBottom();
+                        }
+                        unreadCount = 0;
+                        updateBadge();
+                    } else {
+                        // If silent (chat window closed), render new messages (if any) in the background container,
+                        // and update badge with the exact number of unread admin messages in history.
+                        if (newMessages.length > 0) {
+                            renderMessages(newMessages);
+                        }
+                        unreadCount = messages.filter(m => m.sender === 'admin' && m.is_read === false).length;
+                        updateBadge();
+                    }
+                }
+            })
+            .catch(err => console.error("Chat fetch error:", err));
+        }
+
+        // Render messages to DOM
+        function renderMessages(msgList) {
+            // Remove welcome placeholder if it's there and we have other messages
+            const welcomeMsg = chatMessages.querySelector('.system-msg');
+            if (welcomeMsg && msgList.length > 0 && lastMessageId > 0) {
+                // Keep the system message, but append others
+            }
+
+            msgList.forEach(msg => {
+                // Prevent duplicate elements
+                if (document.getElementById(`msg-${msg.id}`)) return;
+
+                const messageEl = document.createElement('div');
+                messageEl.id = `msg-${msg.id}`;
+                messageEl.className = `message ${msg.sender === 'user' ? 'user' : 'specialist'}`;
+
+                const bubbleEl = document.createElement('div');
+                bubbleEl.className = 'message-bubble';
+                
+                const textEl = document.createElement('p');
+                textEl.textContent = msg.message;
+                bubbleEl.appendChild(textEl);
+
+                const timeEl = document.createElement('span');
+                timeEl.className = 'message-time';
+                timeEl.textContent = msg.created_at;
+
+                messageEl.appendChild(bubbleEl);
+                messageEl.appendChild(timeEl);
+                chatMessages.appendChild(messageEl);
+            });
+        }
+
+        function scrollToBottom() {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function updateBadge() {
+            if (unreadCount > 0) {
+                chatBadge.textContent = unreadCount;
+                chatBadge.classList.remove('hidden');
+            } else {
+                chatBadge.classList.add('hidden');
+                unreadCount = 0;
+            }
+        }
+
+        // Toggle chat panel open/closed
+        function toggleChat() {
+            isOpen = !isOpen;
+            if (isOpen) {
+                chatContainer.classList.add('active');
+                chatTrigger.classList.add('hidden');
+                
+                // Reset badge
+                unreadCount = 0;
+                updateBadge();
+
+                // Stop background slower polling
+                if (backgroundPollingInterval) {
+                    clearInterval(backgroundPollingInterval);
+                    backgroundPollingInterval = null;
+                }
+
+                // If no session exists yet, initialize it
+                if (!sessionId) {
+                    initializeSession(() => {
+                        fetchMessages();
+                        startActivePolling();
+                    });
+                } else {
+                    // Fetch history immediately
+                    fetchMessages();
+                    startActivePolling();
+                }
+            } else {
+                chatContainer.classList.remove('active');
+                chatTrigger.classList.remove('hidden');
+                
+                // Stop active fast polling
+                if (activePollingInterval) {
+                    clearInterval(activePollingInterval);
+                    activePollingInterval = null;
+                }
+
+                // Start background slow polling (every 15 seconds) to catch replies
+                startBackgroundPolling();
+            }
+        }
+
+        function startActivePolling() {
+            if (activePollingInterval) clearInterval(activePollingInterval);
+            activePollingInterval = setInterval(() => {
+                fetchMessages(false);
+            }, 4000);
+        }
+
+        function startBackgroundPolling() {
+            if (backgroundPollingInterval) clearInterval(backgroundPollingInterval);
+            backgroundPollingInterval = setInterval(() => {
+                fetchMessages(true); // silent fetch
+            }, 15000);
+        }
+
+        // Send a user message
+        function sendUserMessage() {
+            const text = chatInputMessage.value.trim();
+            if (!text || !sessionId) return;
+
+            // Optimistically render message
+            const tempId = Date.now();
+            const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            
+            renderMessages([{
+                id: tempId,
+                sender: 'user',
+                message: text,
+                created_at: timeStr
+            }]);
+            scrollToBottom();
+
+            chatInputMessage.value = '';
+            chatSendBtn.disabled = true;
+            chatInputMessage.rows = 1;
+
+            fetch('/chat/send/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    session_id: sessionId,
+                    message: text
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    // Replace temp element if needed or just sync on next poll
+                    const tempEl = document.getElementById(`msg-${tempId}`);
+                    if (tempEl) tempEl.id = `msg-${data.message.id}`;
+                    lastMessageId = Math.max(lastMessageId, data.message.id);
+                }
+            })
+            .catch(err => {
+                console.error("Message send error:", err);
+                const tempEl = document.getElementById(`msg-${tempId}`);
+                if (tempEl) {
+                    tempEl.style.opacity = '0.5';
+                    const errorBadge = document.createElement('span');
+                    errorBadge.className = 'message-time';
+                    errorBadge.style.color = '#d9534f';
+                    errorBadge.textContent = 'Yuborilmadi';
+                    tempEl.appendChild(errorBadge);
+                }
+            });
+        }
+
+        // Toggle contact form
+        function toggleProfile() {
+            chatProfileBox.classList.toggle('hidden');
+        }
+
+        // Save visitor contact profile
+        function saveProfile() {
+            const name = chatInputName.value.trim();
+            const phone = chatInputPhone.value.trim();
+
+            if (!name && !phone) return;
+            if (!sessionId) {
+                initializeSession(() => saveProfile());
+                return;
+            }
+
+            chatSaveProfileBtn.disabled = true;
+
+            fetch('/chat/update-profile/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    session_id: sessionId,
+                    name: name,
+                    phone: phone
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                chatSaveProfileBtn.disabled = false;
+                if (data.success) {
+                    // Show a system message confirming update
+                    renderMessages([{
+                        id: Date.now(),
+                        sender: 'system-msg',
+                        message: currentLang === 'uz' 
+                            ? 'Profil ma\'lumotlari saqlandi.' 
+                            : 'Профиль сохранен.',
+                        created_at: ''
+                    }]);
+                    scrollToBottom();
+                    
+                    // Hide profile box
+                    chatProfileBox.classList.add('hidden');
+                }
+            })
+            .catch(err => {
+                chatSaveProfileBtn.disabled = false;
+                console.error("Profile save error:", err);
+            });
+        }
+
+        // Wire event listeners
+        chatTrigger.addEventListener('click', toggleChat);
+        chatClose.addEventListener('click', toggleChat);
+        chatProfileToggleBtn.addEventListener('click', toggleProfile);
+        chatSaveProfileBtn.addEventListener('click', saveProfile);
+        
+        chatSendBtn.addEventListener('click', sendUserMessage);
+        
+        chatInputMessage.addEventListener('input', function() {
+            // Enable/disable send button
+            chatSendBtn.disabled = this.value.trim() === '';
+            
+            // Auto resize height
+            this.rows = 1;
+            const lineCount = Math.min(3, Math.floor(this.scrollHeight / 20));
+            this.rows = lineCount;
+        });
+
+        chatInputMessage.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendUserMessage();
+            }
+        });
+
+        // Background poll if session already exists
+        if (sessionId) {
+            fetchMessages(true); // immediate silent fetch to populate badge count
+            startBackgroundPolling();
+        }
+    })();
+
 });
+

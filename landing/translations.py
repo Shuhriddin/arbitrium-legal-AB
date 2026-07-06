@@ -139,6 +139,19 @@ TRANSLATIONS = {
         'footer_rights': 'Barcha huquqlar himoyalangan.',
         'footer_disclaimer': 'Diqqat: Ushbu saytdagi ma\'lumotlar faqat ma\'lumot olish maqsadida taqdim etilgan va rasmiy yuridik maslahat o\'rnini bosmaydi.',
         'footer_tagline': 'Jinoiy, ma\'muriy va fuqarolik ishlari bo\'yicha professional himoya.',
+        
+        # Live Chat Keys
+        'chat_title': 'Onlayn yordam',
+        'chat_welcome': 'Salom! Sizga qanday yordam bera olaman?',
+        'chat_placeholder': 'Xabar yozing...',
+        'chat_submit': 'Yuborish',
+        'chat_profile_title': 'Aloqa ma\'lumotlari',
+        'chat_profile_desc': 'Mutaxassis siz bilan bog\'lanishi uchun ma\'lumotlaringizni qoldiring (ixtiyoriy):',
+        'chat_profile_name': 'Ismingiz',
+        'chat_profile_phone': 'Telefon raqamingiz',
+        'chat_profile_save': 'Saqlash',
+        'chat_agent_online': 'Onlayn',
+        'chat_agent_typing': 'Yozmoqda...',
     },
     'ru': {
         'meta_title': 'Адвокат Шухриддин - Адвокат по Уголовным, Административным и Гражданским Делам',
@@ -278,5 +291,18 @@ TRANSLATIONS = {
         'footer_rights': 'Все права защищены.',
         'footer_disclaimer': 'Внимание: Информация на сайте предоставлена исключительно в ознакомительных целях и не заменяет официальную юридическую консультацию.',
         'footer_tagline': 'Профессиональная защита по уголовным, административным и гражданским делам.',
+        
+        # Live Chat Keys
+        'chat_title': 'Онлайн помощь',
+        'chat_welcome': 'Здравствуйте! Чем я могу вам помочь?',
+        'chat_placeholder': 'Введите сообщение...',
+        'chat_submit': 'Отправить',
+        'chat_profile_title': 'Контактные данные',
+        'chat_profile_desc': 'Оставьте свои контакты, чтобы специалист мог связаться с вами (необязательно):',
+        'chat_profile_name': 'Ваше имя',
+        'chat_profile_phone': 'Номер телефона',
+        'chat_profile_save': 'Сохранить',
+        'chat_agent_online': 'Онлайн',
+        'chat_agent_typing': 'Печатает...',
     }
 }

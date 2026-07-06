@@ -105,3 +105,31 @@ async def delete_channel(channel_id):
         except:
             return "Bad"
 
+async def send_reply_to_django(session_id, message_text, bot_token):
+    # Determine Django base url by removing /api from the URL variable
+    base_url = URL.replace('/api', '')
+    endpoint = f"{base_url}/chat/reply-from-telegram/"
+    
+    headers = {
+        'Authorization': f'Bearer {bot_token}',
+        'Content-Type': 'application/json'
+    }
+    
+    data = {
+        'session_id': session_id,
+        'message': message_text
+    }
+    
+    async with aiohttp.ClientSession() as session:
+        try:
+            async with session.post(endpoint, headers=headers, json=data) as response:
+                if response.status == 200:
+                    return await response.json()
+                else:
+                    err_txt = await response.text()
+                    print(f"Failed to send reply to Django: {response.status} - {err_txt}")
+                    return None
+        except Exception as e:
+            print(f"Exception during django reply post: {e}")
+            return None
+

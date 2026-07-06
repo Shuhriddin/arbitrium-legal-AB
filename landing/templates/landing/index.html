@@ -900,6 +900,76 @@ Shaxsning sudlanganlik holati quyidagi paytlarda tugallanadi:
         </div>
     </div>
 
+    <!-- Live Chat Widget -->
+    <div class="chat-widget" id="chat-widget">
+        <!-- Floating Chat Trigger Button -->
+        <button class="chat-trigger" id="chat-trigger" aria-label="Onlayn yordam">
+            <i class="fa-solid fa-comments"></i>
+            <span class="chat-badge hidden" id="chat-badge">0</span>
+        </button>
+
+        <!-- Chat Container Window -->
+        <div class="chat-container" id="chat-container">
+            <!-- Chat Header -->
+            <div class="chat-header">
+                <div class="chat-agent-info">
+                    <div class="chat-agent-avatar">
+                        <i class="fa-solid fa-user-tie"></i>
+                        <span class="avatar-status-dot"></span>
+                    </div>
+                    <div class="chat-agent-details">
+                        <span class="chat-agent-name" data-i18n="logo_subtitle">{{ lang.logo_subtitle }}</span>
+                        <span class="chat-agent-status"><span class="status-pulse"></span> <span data-i18n="chat_agent_online">{{ lang.chat_agent_online }}</span></span>
+                    </div>
+                </div>
+                <div class="chat-header-actions">
+                    <button class="chat-profile-toggle-btn" id="chat-profile-toggle-btn" title="{{ lang.chat_profile_title }}">
+                        <i class="fa-regular fa-id-card"></i>
+                    </button>
+                    <button class="chat-close" id="chat-close" aria-label="Close chat">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chat Profile Intake Form -->
+            <div class="chat-profile-box hidden" id="chat-profile-box">
+                <h4 data-i18n="chat_profile_title">{{ lang.chat_profile_title }}</h4>
+                <p data-i18n="chat_profile_desc">{{ lang.chat_profile_desc }}</p>
+                <div class="chat-profile-form">
+                    <div class="chat-form-group">
+                        <input type="text" id="chat-input-name" placeholder="{{ lang.chat_profile_name }}" data-i18n-placeholder="chat_profile_name">
+                    </div>
+                    <div class="chat-form-group">
+                        <input type="tel" id="chat-input-phone" class="phone-mask" placeholder="{{ lang.chat_profile_phone }}" data-i18n-placeholder="chat_profile_phone" value="+998">
+                    </div>
+                    <button class="btn btn-primary btn-sm btn-block" id="chat-save-profile-btn" data-i18n="chat_profile_save">
+                        {{ lang.chat_profile_save }}
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chat Messages Body -->
+            <div class="chat-messages" id="chat-messages">
+                <!-- System/Welcome Message -->
+                <div class="message system-msg">
+                    <div class="message-bubble">
+                        <p data-i18n="chat_welcome">{{ lang.chat_welcome }}</p>
+                    </div>
+                    <span class="message-time">00:00</span>
+                </div>
+            </div>
+
+            <!-- Chat Footer Input Area -->
+            <div class="chat-footer">
+                <textarea id="chat-input-message" placeholder="{{ lang.chat_placeholder }}" data-i18n-placeholder="chat_placeholder" rows="1"></textarea>
+                <button id="chat-send-btn" class="chat-send-btn" aria-label="Send message" disabled>
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Embedded Translations Dictionary -->
     <script id="translations-data" type="application/json">{{ translations_json|safe }}</script>
 
