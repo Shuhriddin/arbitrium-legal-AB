@@ -10,12 +10,20 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 import os
 from dotenv import load_dotenv
 
+try:
+    from dotenv import load_dotenv
+except ImportError:
+    load_dotenv = None
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+if load_dotenv is not None:
+    load_dotenv(BASE_DIR / '.env')
 
 # Load environment variables from .env file
 load_dotenv(BASE_DIR / '.env')
@@ -125,11 +133,16 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'uz'
+LANGUAGES = [
+    ('uz', 'O\'zbekcha'),
+    ('ru', 'Русский'),
+]
 
 TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
+USE_L10N = True
 
 USE_TZ = True
 

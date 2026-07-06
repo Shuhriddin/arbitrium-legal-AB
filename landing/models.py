@@ -86,12 +86,16 @@ class BlogPost(models.Model):
         ('civil', 'Fuqarolik / Гражданское'),
         ('business', 'Tadbirkorlik / Предпринимательство'),
     )
-    title = models.CharField(max_length=255, verbose_name="Sarlavha / Заголовок")
+    title = models.CharField(max_length=255, verbose_name="Sarlavha (UZ) / Заголовок (UZ)")
+    title_ru = models.CharField(max_length=255, blank=True, default='', verbose_name="Sarlavha (RU) / Заголовок (RU)")
     slug = models.SlugField(max_length=255, unique=True, verbose_name="Slug (URL uchun)")
-    content = models.TextField(verbose_name="Matn / Содержание")
+    content = models.TextField(verbose_name="Matn (UZ) / Содержание (UZ)")
+    content_ru = models.TextField(blank=True, default='', verbose_name="Matn (RU) / Содержание (RU)")
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, verbose_name="Kategoriya / Категория")
-    law_code = models.CharField(max_length=255, blank=True, default='', verbose_name="Kodeks / Кодекс")
-    law_article = models.CharField(max_length=100, blank=True, default='', verbose_name="Modda / Статья")
+    law_code = models.CharField(max_length=255, blank=True, default='', verbose_name="Kodeks (UZ) / Кодекс (UZ)")
+    law_code_ru = models.CharField(max_length=255, blank=True, default='', verbose_name="Kodeks (RU) / Кодекс (RU)")
+    law_article = models.CharField(max_length=100, blank=True, default='', verbose_name="Modda (UZ) / Статья (UZ)")
+    law_article_ru = models.CharField(max_length=100, blank=True, default='', verbose_name="Modda (RU) / Статья (RU)")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Yaratilgan vaqti / Время создания")
     is_published = models.BooleanField(default=True, verbose_name="Chop etilganmi / Опубликовано")
 

@@ -507,4 +507,96 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // ==========================================
+    // 10. Blog Slider with Pagination
+    // ==========================================
+    const blogSliderContainer = document.querySelector('.blog-slider-container');
+    const blogGrid = document.querySelector('.blog-grid');
+    const blogPagination = document.getElementById('blog-pagination');
+    const blogArrowPrev = document.getElementById('blog-arrow-prev');
+    const blogArrowNext = document.getElementById('blog-arrow-next');
+    const blogCards = document.querySelectorAll('.blog-card');
+
+    if (blogCards.length > 3 && blogGrid && blogPagination) {
+        // Create pagination dots (one dot for every 3 cards)
+        const dotsCount = Math.ceil(blogCards.length / 3);
+        
+        for (let i = 0; i < dotsCount; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('blog-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.setAttribute('data-slide', i);
+            dot.addEventListener('click', function() {
+                scrollToSlide(i);
+            });
+            blogPagination.appendChild(dot);
+        }
+
+        // Function to scroll to specific slide
+        function scrollToSlide(slideIndex) {
+            const cardWidth = blogCards[0].offsetWidth;
+            const gap = 32;
+            const scrollPosition = slideIndex * (cardWidth + gap);
+            blogGrid.scrollTo({
+                left: scrollPosition,
+                behavior: 'smooth'
+            });
+            updatePaginationDots(slideIndex);
+        }
+
+        // Arrow button navigation
+        if (blogArrowPrev) {
+            blogArrowPrev.addEventListener('click', function() {
+                const cardWidth = blogCards[0].offsetWidth;
+                const gap = 32;
+                const currentScroll = blogGrid.scrollLeft;
+                const prevPosition = Math.max(0, currentScroll - (cardWidth + gap));
+                blogGrid.scrollTo({
+                    left: prevPosition,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        if (blogArrowNext) {
+            blogArrowNext.addEventListener('click', function() {
+                const cardWidth = blogCards[0].offsetWidth;
+                const gap = 32;
+                const currentScroll = blogGrid.scrollLeft;
+                const nextPosition = currentScroll + (cardWidth + gap);
+                blogGrid.scrollTo({
+                    left: nextPosition,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Update pagination dots based on scroll position
+        function updatePaginationDots(slideIndex) {
+            const dots = document.querySelectorAll('.blog-dot');
+            dots.forEach((dot) => {
+                dot.classList.remove('active');
+            });
+            if (dots[slideIndex]) {
+                dots[slideIndex].classList.add('active');
+            }
+        }
+
+        // Handle scroll events to update dots
+        let scrollTimeout;
+        blogGrid.addEventListener('scroll', function() {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                const scrollLeft = blogGrid.scrollLeft;
+                const cardWidth = blogCards[0].offsetWidth;
+                const gap = 32;
+                const currentSlide = Math.round(scrollLeft / (cardWidth + gap));
+                updatePaginationDots(currentSlide);
+            }, 100);
+        });
+
+        // Initialize first dot as active
+        updatePaginationDots(0);
+    }
+
 });
