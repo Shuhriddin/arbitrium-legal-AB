@@ -12,6 +12,8 @@
     <meta name="keywords"
         content="Toshkent advokati, Jinoyat ishlari bo'yicha advokat, Advokat Toshkent, Ma'muriy ishlar advokati, Fuqarolik ishlar advokati, Yuridik konsultatsiya, Advokat yollash, Himoyachi advokat">
 
+    <link rel="shortcut icon" href="{% static 'images/101.png' %}" type="image/x-icon">
+
     <!-- Elegant Typography: Playfair Display & Inter (Local) -->
     <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
 
@@ -19,7 +21,7 @@
     <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=1.6">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=1.5">
 </head>
 
 <body>
@@ -147,10 +149,14 @@
                     <p class="service-desc" data-i18n="service_criminal_desc">{{ lang.service_criminal_desc }}</p>
 
                     <ul class="service-list">
-                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_criminal_item1">{{ lang.service_criminal_item1 }}</span></li>
-                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_criminal_item2">{{ lang.service_criminal_item2 }}</span></li>
-                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_criminal_item3">{{ lang.service_criminal_item3 }}</span></li>
-                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_criminal_item4">{{ lang.service_criminal_item4 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_criminal_item1">{{
+                                lang.service_criminal_item1 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_criminal_item2">{{
+                                lang.service_criminal_item2 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_criminal_item3">{{
+                                lang.service_criminal_item3 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_criminal_item4">{{
+                                lang.service_criminal_item4 }}</span></li>
                     </ul>
 
                     <button class="btn btn-outline-dark card-btn open-modal-btn" data-category="criminal"
@@ -199,10 +205,14 @@
                     <p class="service-desc" data-i18n="service_civil_desc">{{ lang.service_civil_desc }}</p>
 
                     <ul class="service-list">
-                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_civil_item1">{{ lang.service_civil_item1 }}</span></li>
-                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_civil_item2">{{ lang.service_civil_item2 }}</span></li>
-                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_civil_item3">{{ lang.service_civil_item3 }}</span></li>
-                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_civil_item4">{{ lang.service_civil_item4 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_civil_item1">{{
+                                lang.service_civil_item1 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_civil_item2">{{
+                                lang.service_civil_item2 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_civil_item3">{{
+                                lang.service_civil_item3 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_civil_item4">{{
+                                lang.service_civil_item4 }}</span></li>
                     </ul>
 
                     <button class="btn btn-outline-dark card-btn open-modal-btn" data-category="civil"
@@ -220,10 +230,14 @@
                     <p class="service-desc" data-i18n="service_business_desc">{{ lang.service_business_desc }}</p>
 
                     <ul class="service-list">
-                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_business_item1">{{ lang.service_business_item1 }}</span></li>
-                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_business_item2">{{ lang.service_business_item2 }}</span></li>
-                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_business_item3">{{ lang.service_business_item3 }}</span></li>
-                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_business_item4">{{ lang.service_business_item4 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_business_item1">{{
+                                lang.service_business_item1 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_business_item2">{{
+                                lang.service_business_item2 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_business_item3">{{
+                                lang.service_business_item3 }}</span></li>
+                        <li><i class="fa-solid fa-check list-check"></i> <span data-i18n="service_business_item4">{{
+                                lang.service_business_item4 }}</span></li>
                     </ul>
 
                     <button class="btn btn-outline-dark card-btn open-modal-btn" data-category="business"
@@ -769,7 +783,8 @@ Shaxsning sudlanganlik holati quyidagi paytlarda tugallanadi:
         <div class="footer-bottom">
             <div class="container footer-bottom-container">
                 <p class="footer-disclaimer-text" data-i18n="footer_disclaimer">{{ lang.footer_disclaimer }}</p>
-                <p class="footer-copy">&copy; 2026 {{ lang.logo_title }}. <span data-i18n="footer_rights">{{ lang.footer_rights }}</span></p>
+                <p class="footer-copy">&copy; 2026 {{ lang.logo_title }}. <span data-i18n="footer_rights">{{
+                        lang.footer_rights }}</span></p>
             </div>
         </div>
     </footer>
@@ -802,7 +817,8 @@ Shaxsning sudlanganlik holati quyidagi paytlarda tugallanadi:
                 </div>
 
                 <div class="form-group">
-                    <label for="modal-phone" data-i18n="form_phone_placeholder">{{ lang.form_phone_placeholder }}</label>
+                    <label for="modal-phone" data-i18n="form_phone_placeholder">{{ lang.form_phone_placeholder
+                        }}</label>
                     <div class="input-wrapper">
                         <i class="fa-solid fa-phone input-icon"></i>
                         <input type="tel" id="modal-phone" class="phone-mask" name="phone" required
@@ -831,7 +847,8 @@ Shaxsning sudlanganlik holati quyidagi paytlarda tugallanadi:
                 </div>
 
                 <div class="form-group">
-                    <label for="modal-description" data-i18n="form_desc_placeholder">{{ lang.form_desc_placeholder }}</label>
+                    <label for="modal-description" data-i18n="form_desc_placeholder">{{ lang.form_desc_placeholder
+                        }}</label>
                     <div class="input-wrapper">
                         <i class="fa-regular fa-comment-dots input-icon textarea-icon"></i>
                         <textarea id="modal-description" name="description" rows="3"
@@ -950,7 +967,6 @@ Shaxsning sudlanganlik holati quyidagi paytlarda tugallanadi:
                     <span class="message-time">00:00</span>
                 </div>
             </div>
-
             <!-- Chat Footer Input Area -->
             <div class="chat-footer">
                 <textarea id="chat-input-message" placeholder="{{ lang.chat_placeholder }}"
@@ -965,7 +981,7 @@ Shaxsning sudlanganlik holati quyidagi paytlarda tugallanadi:
     <script id="translations-data" type="application/json">{{ translations_json|safe }}</script>
 
     <!-- Main JavaScript file -->
-    <script src="{% static 'js/main.js' %}?v=1.2" defer></script>
+    <script src="{% static 'js/main.js' %}?v=1.1" defer></script>
 </body>
 
 </html>
